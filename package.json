@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "fs": "0.0.1-security",
-    "nodemon": "^1.11.0",
+    "nodemon": "^2.0.22",
     "tap-spec": "^5.0.0"
   },
   "scripts": {
