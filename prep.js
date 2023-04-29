@@ -31,18 +31,24 @@ var insertDocuments = function(db, callback) {
         records.push( record )
     }
     collection.insert( records ).then((doc) => {
-        console.log( doc );
+        console.log('doc::',doc );
         MongoClient.connect( url, function(err, mdb) {
-            if (err) { console.log(err); }
+            if (err) { 
+                console.log("err detected: ",err);
+                console.log(err); 
+            }
+            console.log("'mdb: ",mdb);
             var collection = mdb.collection("coffee");
+            console.log("123123");
             collection.createIndex({ location: "2dsphere" }, function() {
-                mdb.close();
+                console.log("is the callback being hit?");
+                mdb.close(true);
             });
         });
     }).catch((err) => {
         console.log( err );
     }).then(() => {
-        db.close();  
+        db.close(true);  
     });
 };
 
